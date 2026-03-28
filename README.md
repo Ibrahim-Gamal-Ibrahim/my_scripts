@@ -37,8 +37,6 @@ This project demonstrates how to deploy a static website to an AWS EC2 instance 
   - VPC, subnet, and security group
 - Created and downloaded a **key pair (.pem)** for SSH access
 
----
-
 ### 2. Configure SSH Access
 
 Set correct permissions for the key file:
@@ -46,19 +44,20 @@ Set correct permissions for the key file:
 ```bash
 chmod 400 ubuntu-client.pem
 
-Connect to the EC2 instance:
-
+### 3. Connect to the EC2 instance:
+```bash
 ssh -i ~/.ssh/ubuntu-client.pem ubuntu@<EC2_PUBLIC_IP>
-3. Install and Start NGINX on EC2
+###4. Install and Start NGINX on EC2
+```bash
 sudo apt update
 sudo apt install nginx -y
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-Verify NGINX is running:
-
+### 5. Verify NGINX is running:
 systemctl status nginx
-4. Create a Static Website Locally
+
+###6. Create a Static Website Locally
 
 Example project structure:
 
@@ -66,24 +65,26 @@ project/
 ├── index.html
 ├── styles.css
 └── images/
-5. Deploy Website Using rsync
+### 7. Deploy Website Using rsync
 
 Transfer files from local machine to EC2:
 
+```bash
 rsync -avz -e "ssh -i ~/.ssh/ubuntu-client.pem" ./project/ ubuntu@<EC2_PUBLIC_IP>:/tmp/site
 
 Move files into NGINX web root:
-
+```bash
 ssh -i ~/.ssh/ubuntu-client.pem ubuntu@<EC2_PUBLIC_IP> "sudo rsync -av --delete /tmp/site/ /var/www/html/"
-6. Access the Website
+### 8. Access the Website
 
 Open a browser and navigate to:
-
+```bash
 http://<EC2_PUBLIC_IP>
 
 You should see the deployed static website served by NGINX.
+---
 
-🔐 Important Notes
+### 🔐 Important Notes
 Ensure the EC2 security group allows:
 Port 22 (SSH)
 Port 80 (HTTP)
@@ -92,14 +93,17 @@ NGINX default document root:
 The trailing slash in rsync:
 project/ → copies contents
 project → copies the directory itself
-🧠 Key Concepts Learned
+---
+###🧠 Key Concepts Learned
 AWS EC2 provisioning and configuration
 SSH authentication using key pairs
 NGINX installation and service management
 Secure file transfer using rsync
 Static website deployment workflow
 Linux system administration basics
-📌 Author
+---
+### 📌 Author
 
 Ibrahim Gamal Ibrahim
 DevOps Engineer
+---
