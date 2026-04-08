@@ -1,0 +1,11 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for roles/base
+base_packages:
+  - curl
+  - wget
+  - git
+  - unzip
+  - tar
+  - python3
+  - python3-pip

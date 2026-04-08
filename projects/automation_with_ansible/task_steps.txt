@@ -1,0 +1,15 @@
+1- create an EC2 in AWS 
+2- prepare the ssh configuration on this Ec2 to work with ansible 
+3- prepare the prerequstes that ensures the machine talk with ansible 
+4- test the connection with a small task 
+5- prepare the reposatory that contains the website (front end)
+6- create an ansible directory that contains all its files and hierarachy (hosts , playbooks, roles, ...)
+7- create a role for each part: 
+    a- setup the prerequists on the EC2.
+    b- install the Nginx and configure it 
+    c- clone the app inside the EC2 
+    d- but the app under the Nginx root 
+8- test the application by hitting the EC2 public ip and the Nginx port 
+
+to review the Best practice to write a proffesional playbooks please take a look at: 
+https://chatgpt.com/c/69d090e6-fce8-8325-ba98-e91b9926874d

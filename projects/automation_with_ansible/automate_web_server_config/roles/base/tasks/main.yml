@@ -1,0 +1,15 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/base
+- name: update the packages 
+  apt: 
+    update_cache: true 
+
+- name: upgrade the packages
+  apt:
+    upgrade: dist
+  
+- name: install the base packages
+  apt: 
+    name: "{{ base_packages }}"
+    state: present

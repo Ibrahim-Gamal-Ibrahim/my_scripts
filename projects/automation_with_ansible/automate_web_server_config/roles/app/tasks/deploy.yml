@@ -1,0 +1,28 @@
+- name: Clone frontend repository
+  git:
+    repo: "{{ frontend_repo }}"
+    dest: "{{ repo_tmp_dir }}"
+    version: "{{ frontend_version }}"
+  register: git_result
+
+
+- name: Copy frontend files to nginx root
+  copy:
+    src: "{{ frontend_tmp_dir }}/"
+    dest: "{{ nginx_root }}/"
+    owner: "{{ frontend_owner }}"
+    group: "{{ frontend_group }}"
+    mode: '0755'
+    remote_src: yes
+  
+
+- name: delete the Readme file from the nginx root directory
+  file:
+    path: "{{ nginx_root }}/README.md"
+    state: absent
+  notify: reload nginx
+
+- name: delete the cloned repo temp directory
+  file:
+    path: "{{ repo_tmp_dir }}"
+    state: absent

@@ -1,0 +1,13 @@
+- name: installing the nginx webserver
+  apt: 
+    name: "{{ nginx_package }}"
+    state: present 
+  tags: nginx
+
+- name: Create app directory
+  file:
+    path: "{{ app_root }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
