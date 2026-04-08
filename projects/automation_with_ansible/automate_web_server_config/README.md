@@ -160,7 +160,7 @@ The frontend application is successfully served via the web browser as shown bel
 
 ### 📸 Final Result
 
-> ![Deployment Result](my_script/projects/automation_with_ansible/images/final-test.jpg)
+> ![Deployment Result](images/final-test.jpg)
 
 ---
 
